@@ -24,38 +24,39 @@ def main():
     compressed_image_data = img.read(data_length)  # Image data
     decompressed_image_data = decompress_image(compressed_image_data)
     decompressed_length = len(decompressed_image_data)
-
-    modified_data = bytearray()
-    image = [[]]
-    filtering_method = []
-    for r in range(0, 10):
-        filtering_method[r] = decompressed_image_data[31 * r]
-        for c in range(1, 31):
-            image[r][c-1] = decompressed_image_data[31 * r + c]
-
-    for i in range(0, 10):
-        row
-        if filtering_method[i] == 0:
-            # None
-            for num in range(0, 10):
-
-        elif filtering_method[i] == 1:
-            # Sub
-        elif filtering_method[i] == 2:
-            # Up
-        elif filtering_method[i] == 3:
-            # Average
-        elif filtering_method[i] == 4:
-            # Paeth
+    rgb_vals = decompressed_length - decompressed_length % 3
 
     # modified_data = bytearray()
-    # for i in range(0, rgb_vals, 3):
-    #     r = decompressed_image_data[i]
-    #     g = decompressed_image_data[i + 1]
-    #     b = decompressed_image_data[i + 2]
-    #     print(r, g, b)
-    #     gray = int(0.299*r+0.587*g+0.114*b)  # Compute the average of RGB channels for grayscale value
-    #     modified_data.extend([gray, gray, gray])
+    # image = [[]]
+    # filtering_method = []
+    # for r in range(0, 10):
+    #     filtering_method[r] = decompressed_image_data[31 * r]
+    #     for c in range(1, 31):
+    #         image[r][c-1] = decompressed_image_data[31 * r + c]
+    #
+    # for i in range(0, 10):
+    #     row
+    #     if filtering_method[i] == 0:
+    #         # None
+    #         for num in range(0, 10):
+    #
+    #     elif filtering_method[i] == 1:
+    #         # Sub
+    #     elif filtering_method[i] == 2:
+    #         # Up
+    #     elif filtering_method[i] == 3:
+    #         # Average
+    #     elif filtering_method[i] == 4:
+    #         # Paeth
+
+    modified_data = bytearray()
+    for i in range(0, rgb_vals, 3):
+        r = decompressed_image_data[i]
+        g = decompressed_image_data[i + 1]
+        b = decompressed_image_data[i + 2]
+        print(r, g, b)
+        gray = int(0.299*r+0.587*g+0.114*b)  # Compute the average of RGB channels for grayscale value
+        modified_data.extend([gray, gray, gray])
 
     if decompressed_length % 3 == 1:
         modified_data.extend([decompressed_image_data[decompressed_length-1]])
