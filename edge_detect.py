@@ -8,8 +8,6 @@ def main():
     blur_img = Image.new('RGB', img.size)
     sobel_img = Image.new('RGB', img.size)
 
-    pixel_data = list(img.getdata())
-
     grayscale(img, grayscale_img)
     grayscale_img.save('grayscale.png')
 
